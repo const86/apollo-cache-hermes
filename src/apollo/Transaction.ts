@@ -1,7 +1,7 @@
 import { ApolloCache, Cache, Transaction } from 'apollo-cache';
 import { JsonValue } from 'apollo-utilities';
-import lodashIsEqual = require('lodash.isequal');
-import lodasGet = require('lodash.get');
+import isEqual from 'lodash-es/isEqual';
+import get from 'lodash-es/get';
 
 import { CacheTransaction } from '../CacheTransaction';
 import { GraphSnapshot } from '../GraphSnapshot';
@@ -82,7 +82,7 @@ export class ApolloTransaction extends ApolloQueryable implements ApolloCache<Gr
     }
 
     for (const { id: outboundId, path } of currentContainerNode.outbound) {
-      if (lodashIsEqual(editPath, path)) {
+      if (isEqual(editPath, path)) {
         const fieldArguments = getOriginalFieldArguments(outboundId);
         if (fieldArguments) {
           let cacheResult: any;
@@ -99,7 +99,7 @@ export class ApolloTransaction extends ApolloQueryable implements ApolloCache<Gr
           } catch (error) {
             continue;
           }
-          const previousData = lodasGet(cacheResult, path);
+          const previousData = get(cacheResult, path);
 
           if (!Array.isArray(previousData)) {
             const details = `${verboseTypeof(previousData)} at ContainerId ${containerId} with readFragment ${readFragmentName}`;

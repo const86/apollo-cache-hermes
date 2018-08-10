@@ -79,13 +79,6 @@ export namespace CacheContext {
     entityTransformer?: EntityTransformer;
 
     /**
-     * Whether values in the graph should be frozen.
-     *
-     * Defaults to true unless process.env.NODE_ENV === 'production'
-     */
-    freeze?: boolean;
-
-    /**
      * Parameterized fields that should redirect to entities in the cache when
      * there is no value currently cached for their location.
      *
@@ -153,9 +146,6 @@ export class CacheContext {
   /** Run transformation on changed entity node, if any. */
   readonly entityTransformer: CacheContext.EntityTransformer | undefined;
 
-  /** Whether we should freeze snapshots after writes. */
-  readonly freezeSnapshots: boolean;
-
   /** Whether the cache should emit debug level log events. */
   readonly verbose: boolean;
 
@@ -179,12 +169,8 @@ export class CacheContext {
   private readonly _operationMap = new Map<string, OperationInstance[]>();
 
   constructor(config: CacheContext.Configuration = {}) {
-    // Infer dev mode from NODE_ENV, by convention.
-    const nodeEnv = typeof process !== 'undefined' ? process.env.NODE_ENV : 'development';
-
     this.entityIdForValue = _makeEntityIdMapper(config.entityIdForNode);
     this.entityTransformer = config.entityTransformer;
-    this.freezeSnapshots = 'freeze' in config ? !!config.freeze : nodeEnv !== 'production';
 
     this.verbose = !!config.verbose;
     this.resolverRedirects = config.resolverRedirects || {};

@@ -30,7 +30,7 @@ describe(`operations.migrate`, () => {
   let cacheContext: CacheContext;
   // let cacheSnapshot: CacheSnapshot;
   beforeAll(() => {
-    cacheContext = new CacheContext({ ...strictConfig, freeze: false });
+    cacheContext = new CacheContext(strictConfig);
   });
 
   it(`can add fields to root`, () => {

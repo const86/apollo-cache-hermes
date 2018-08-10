@@ -1,4 +1,4 @@
-import lodashGet = require('lodash.get');
+import get from 'lodash-es/get';
 
 import { CacheContext } from '../context';
 import { GraphSnapshot } from '../GraphSnapshot';
@@ -140,7 +140,7 @@ export function _walkAndOverlayDynamicValues(
           }
 
           // Should we fall back to a redirect?
-          const redirect: CacheContext.ResolverRedirect | undefined = lodashGet(context.resolverRedirects, [typeName, fieldName]) as any;
+          const redirect: CacheContext.ResolverRedirect | undefined = get(context.resolverRedirects, [typeName, fieldName]) as any;
           if (redirect) {
             childId = redirect(node.args);
             if (!isNil(childId)) {

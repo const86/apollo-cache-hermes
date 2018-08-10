@@ -1,4 +1,4 @@
-import lodashGet = require('lodash.get');
+import get from 'lodash-es/get';
 
 import { CacheSnapshot } from '../CacheSnapshot';
 import { GraphSnapshot } from '../GraphSnapshot';
@@ -55,8 +55,8 @@ function migrateEntity(
   // Only if object and if valid MigrationMap is provided
   if (!isObject(snapshot.data)) return snapshot;
 
-  const entityMigrations = lodashGet(migrationMap, '_entities');
-  const parameterizedMigrations = lodashGet(migrationMap, '_parameterized');
+  const entityMigrations = get(migrationMap, '_entities');
+  const parameterizedMigrations = get(migrationMap, '_parameterized');
 
   const typeName = snapshot.data.__typename as string || 'Query';
 

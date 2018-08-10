@@ -3,7 +3,6 @@ import * as util from 'util';
 import { CacheContext } from '../../src/context/CacheContext';
 
 export const strictConfig: CacheContext.Configuration = {
-  freeze: true,
   logger: {
     debug: jest.fn(),
     info: jest.fn(),
@@ -16,7 +15,6 @@ export const strictConfig: CacheContext.Configuration = {
 };
 
 export const silentConfig: CacheContext.Configuration = {
-  freeze: true,
   logger: {
     debug: jest.fn(),
     info: jest.fn(),

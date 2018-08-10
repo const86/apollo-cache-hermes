@@ -440,9 +440,6 @@ export class SnapshotEditor {
     this._rebuildInboundReferences();
 
     const snapshot = this._buildNewSnapshot();
-    if (this._context.freezeSnapshots) {
-      snapshot.freeze();
-    }
 
     return {
       snapshot,

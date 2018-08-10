@@ -10,7 +10,7 @@
       "esnext.asynciterable",
       "scripthost"
     ],
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "newLine": "LF",
     "noImplicitAny": true,

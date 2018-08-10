@@ -1,5 +1,5 @@
-import lodashSet = require('lodash.set');
-import lodashFindIndex = require('lodash.findindex');
+import set from 'lodash-es/set';
+import findIndex from 'lodash-es/findindex';
 
 import { CacheSnapshot } from '../CacheSnapshot';
 import { CacheContext } from '../context';
@@ -88,12 +88,12 @@ function restoreEntityReferences(nodesMap: NodeSnapshotMap, cacheContext: CacheC
         // ParameterizedValueSnapshot.
         // (see: parameterizedFields/nestedParameterizedReferenceInArray.ts)
         // We only want to try walking if its data contains an array
-        const indexToArrayIndex = lodashFindIndex(path, isNumber);
+        const indexToArrayIndex = findIndex(path, isNumber);
         if (indexToArrayIndex !== -1) {
           tryRestoreSparseArray(data, path, 0);
         }
       } else if (Array.isArray(data) || isObject(data)) {
-        lodashSet(data, path, referenceNode.data);
+        set(data, path, referenceNode.data);
       }
     }
   }

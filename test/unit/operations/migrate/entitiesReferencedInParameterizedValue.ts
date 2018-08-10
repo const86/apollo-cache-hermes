@@ -57,7 +57,7 @@ function createNewCacheSnapshot(cacheContext: CacheContext) {
 describe(`operations.migrate`, () => {
   let cacheContext: CacheContext;
   beforeAll(() => {
-    cacheContext = new CacheContext({ ...strictConfig, freeze: false });
+    cacheContext = new CacheContext(strictConfig);
   });
 
   it(`can add fields to entities referenced within parameterized value`, () => {
